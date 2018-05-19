@@ -1,0 +1,84 @@
+version: '3.2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    labels: 
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: ""
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certs:/etc/nginx/certs:ro
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      HTTPS_METHOD: noredirect
+
+  nginx-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    depends_on:
+      - nginx-proxy
+    restart: unless-stopped
+    volumes:
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - ./certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  wordpress:
+    depends_on:
+      - nginx-proxy
+      - nginx-letsencrypt
+      - mysql
+    image: samiam236/wordpress:4.9.4-apache
+    expose:
+      - "80"
+      - "443"
+    volumes:
+      - ./plugins:/var/www/html/wp-content/plugins
+      - ./themes:/var/www/html/wp-content/themes
+      - ./uploads:/var/www/html/wp-content/uploads
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: your_user
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
+      WORDPRESS_DB_NAME: db_name
+      WORDPRESS_TABLE_PREFIX: wp_
+      WORDPRESS_DEBUG: 0
+      HTTPS_METHOD: noredirect
+      VIRTUAL_HOST: ${DOMAIN-localhost}, www.${DOMAIN}
+      LETSENCRYPT_TEST: ${HTTPS_TEST-true}
+      LETSENCRYPT_HOST: ${DOMAIN}, www.${DOMAIN}
+      LETSENCRYPT_EMAIL: youremail@example.com
+    secrets:
+       - db_password
+    restart: unless-stopped
+  
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE: db_name
+      MYSQL_USER: your_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+       - db_password
+       - db_root_password
+    restart: unless-stopped
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_root_password:
+    file: ./secrets/db_root_password.txt
+
+volumes:
+  confd:
+  vhost:
+  html:
+  mysql:
+  

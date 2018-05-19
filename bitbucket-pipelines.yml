@@ -1,0 +1,23 @@
+image: samiam236/alpine-rsync:3.6
+
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - rm -r secrets
+            - mkdir secrets
+            - rm -r certs
+            - mkdir certs
+            - echo $DB_PASSWORD > ./secrets/db_password.txt
+            - echo $DB_ROOT_PASSWORD > ./secrets/db_root_password.txt
+            - echo -e "HTTPS_TEST=$HTTPS_TEST\nDOMAIN=$DOMAIN\nHTTP_PORT=$HTTP_PORT" > .env
+            - rsync -avz --no-o --no-g --exclude '.git' --exclude 'src' --exclude 'plugins' $(pwd)/ $SERVER_USER@$SERVER_IP_ADDRESS:~/site-staging/
+            - > 
+              ssh $SERVER_USER@$SERVER_IP_ADDRESS 
+              "cp -ar ~/site-staging/. ~/app &&
+              cd ~/app &&
+              docker-compose up -d"           
+              
+            
+            # To Do: Once docker-compose is launched, remove the secret files.
