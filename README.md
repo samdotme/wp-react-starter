@@ -18,6 +18,9 @@ Note: This assumes nothing else is already running on localhost. If you're on a 
 
 Also, you'll need to have Docker [installed](https://docs.docker.com/install/).
 
+## Going to Production
+The purpose of this repo is to give you a local environment for building out your own Wordpress theme. You can of course push all of this into production, but if you do, we strongly recommend that you delete the "secret" files and create your own via whatever build pipeline you use. See an example of how to do this in `bitbucket-pipelines.yml`.
+
 ## Next steps for dev
 - Update Wordpress version.
 - Add React and TypeScript.

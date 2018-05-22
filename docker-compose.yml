@@ -46,7 +46,7 @@ services:
       WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
       WORDPRESS_DB_NAME: db_name
       WORDPRESS_TABLE_PREFIX: wp_
-      WORDPRESS_DEBUG: 0
+      WORDPRESS_DEBUG: 1
       HTTPS_METHOD: noredirect
       VIRTUAL_HOST: ${DOMAIN-localhost}, www.${DOMAIN}
       LETSENCRYPT_TEST: ${HTTPS_TEST-true}

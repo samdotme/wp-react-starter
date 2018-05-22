@@ -1,3 +1,9 @@
 import '../styles/index.scss';
+import React from "react";
+import ReactDOM from "react-dom";
 
-console.log('i exist');
+const Index = () => {
+  return <div>React is loaded.</div>;
+};
+
+ReactDOM.render(<Index />, document.getElementById("index"));
