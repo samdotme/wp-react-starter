@@ -1,0 +1,38 @@
+{
+  "name": "wp-react-starter",
+  "version": "1.0.0",
+  "description": "A launch point for new Wordpress themes.",
+  "main": "./src/scripts/index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samiam236/wp-react-starter.git"
+  },
+  "keywords": [
+    "Wordpress",
+    "theme",
+    "boilerplate"
+  ],
+  "author": "Sam Schneider",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samiam236/wp-react-starter/issues"
+  },
+  "homepage": "https://github.com/samiam236/wp-react-starter#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}
