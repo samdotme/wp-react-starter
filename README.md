@@ -24,5 +24,6 @@ The purpose of this repo is to give you a local environment for building out you
 Before going to production, just make sure you use real passwords instead of the dummy ones in the `secrets` folder, deal? ;) A good example of how to dynamically insert secure passwords via a build pipeline is in `bitbucket-pipelines.yml`.
 
 ## Next steps for dev
-- Add TypeScript build on top of React.
 - Add example Gutenberg modules.
+- Add Jest test framework for testing React and Gutenberg modules.
+- Add php unit tests for Wordpress.
