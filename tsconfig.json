@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "outDir": ".themes/boiler-room/assets/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": ["es6", "dom"],
+        "jsx": "react"
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
