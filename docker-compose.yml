@@ -32,7 +32,7 @@ services:
       - nginx-proxy
       - nginx-letsencrypt
       - mysql
-    image: samiam236/wordpress:4.9.4-apache
+    image: samiam236/wordpress:4.9.6-apache
     expose:
       - "80"
       - "443"
