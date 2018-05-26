@@ -2,10 +2,13 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: { main: './src/scripts/index.tsx' },
+  entry: { 
+    main: './src/scripts/index.tsx',
+    block: './src/scripts/blocks/block.js'
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    path: path.resolve(__dirname, 'themes/boiler-room/assets'),
+    filename: '[name].js'
   },
 
   devtool: 'source-map',

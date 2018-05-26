@@ -11,15 +11,30 @@ add_action( 'init', 'add_excerpts_to_pages' );
 
 /* Load Scripts and Styles */
 function load_styles() {
-  wp_enqueue_style('main-style', get_bloginfo('template_url') . '/assets/css/main.css', array());
+  wp_enqueue_style('main-style', get_bloginfo('template_url') . '/assets/main.css', array());
 }
 
 function load_scripts() {
-  wp_enqueue_script( 'react-app', get_template_directory_uri() . '/assets/js/main.js', array(), 1.0, true );
+  wp_enqueue_script( 'react-app', get_template_directory_uri() . '/assets/main.js', array(), 1.0, true );
+}
+
+function load_blocks() {
+  wp_register_script(
+    'gutenberg-boilerplate-esnext-step01',
+    get_template_directory_uri() . '/assets/block.js',
+        array( 'wp-blocks', 'wp-element' )
+  );
+
+  register_block_type(
+    'gutenberg-boilerplate-esnext/hello-world-step-01', array(
+      'script' => 'gutenberg-boilerplate-esnext-step01',
+    )
+  );
 }
 
 add_action('wp_enqueue_scripts', 'load_styles');
 add_action('wp_enqueue_scripts', 'load_scripts');
+add_action('init', 'load_blocks');
 
 /* Disable the horrible security hole that is password is incorrect message. */
 function no_wordpress_errors(){
