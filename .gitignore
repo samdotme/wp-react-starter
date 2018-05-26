@@ -21,5 +21,9 @@ node_modules
 plugins/**/*
 uploads
 themes/twenty*
+themes/boiler-room/assets/*.css
+themes/boiler-room/assets/*.css.map
+themes/boiler-room/assets/*.js
+themes/boiler-room/assets/*.js.map
 certs/**/*
 dist

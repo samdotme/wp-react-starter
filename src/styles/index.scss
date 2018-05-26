@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 @import 'content-page';
 
-$font: 'Trebuchet MS';
+$main-font: 'Montserrat';
 
 body {
-  font-family: $font;
+  font-family: $main-font, sans-serif;
   margin: 0;
 }

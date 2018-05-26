@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: { 
     main: './src/scripts/index.tsx',
-    block: './src/scripts/blocks/block.js'
+    block: './src/blocks/block.js'
   },
   output: {
     path: path.resolve(__dirname, 'themes/boiler-room/assets'),
@@ -48,7 +48,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin({filename: 'main.css'})
+    new ExtractTextPlugin({filename: '[name].css'})
   ],
   // To do: Create copy step from node_modules to allow for external loading of React.
   // externals: {

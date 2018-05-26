@@ -22,12 +22,18 @@ function load_blocks() {
   wp_register_script(
     'gutenberg-boilerplate-esnext-step01',
     get_template_directory_uri() . '/assets/block.js',
-        array( 'wp-blocks', 'wp-element' )
+    array( 'wp-blocks', 'wp-element' )
+  );
+  wp_register_style(
+    'gutenberg-boilerplate-esnext-step01',
+    get_template_directory_uri() . '/assets/block.css',
+    array( 'wp-edit-blocks' )
   );
 
   register_block_type(
     'gutenberg-boilerplate-esnext/hello-world-step-01', array(
-      'script' => 'gutenberg-boilerplate-esnext-step01',
+      'editor_script' => 'gutenberg-boilerplate-esnext-step01',
+      'style' => 'gutenberg-boilerplate-esnext-step01'
     )
   );
 }
